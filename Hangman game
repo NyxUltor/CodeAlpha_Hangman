@@ -1,0 +1,32 @@
+import random
+
+words = ['yeet', 'deez', 'sus', 'simps', 'bruh']
+word = random.choice(words)
+display = ['_'] * len(word)
+guesses = []
+lives = 6
+
+while lives > 0 and '_' in display:
+    print('word:', ' '.join(display))
+    print('guesses:', ' '.join(guesses))
+    
+    guess = input('Guess a letter: ').lower()
+
+    if guess in guesses:
+        print('Already guessed.')
+        continue
+
+    guesses.append(guess)
+
+    if guess in word:
+        for i in range(len(word)):
+            if word[i] == guess:
+                display[i] = guess
+    else:
+        lives -= 1
+        print('Wrong guess! Lives left:', lives)
+
+if '_' not in display:
+    print('The word was:', word,'\nYou won!(But at what cost?)' )
+else:
+    print( 'The word was:', word,'\nYou lost AHAHAHAHA LOSER try again if you dare')
